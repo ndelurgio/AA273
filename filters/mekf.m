@@ -1,7 +1,10 @@
-function [outputArg1,outputArg2] = mekf(inputArg1,inputArg2)
-%MEKF Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [outputArg1,outputArg2] = mekf(mu_prev, y)
+
+% Init dv = 0
+dv = zeros(3,1);
+% Predict
+
+
+
 end
 
