@@ -32,6 +32,6 @@ q = x(1:4,:);
 w = x(5:7,:);
 b = x(8:10,:);
 
-plotQuaternion(tspan,q)
-plotAngularVelocity(tspan,w)
+plotQuaternion(tspan,q,y)
+plotAngularVelocity(tspan,w,y)
 plotGyroBias(tspan,b)
