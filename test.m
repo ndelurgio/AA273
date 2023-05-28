@@ -35,3 +35,5 @@ b = x(8:10,:);
 plotQuaternion(tspan,q,y)
 plotAngularVelocity(tspan,w,y)
 plotGyroBias(tspan,b)
+
+jacobianest(@(x) attitudeDynamicsEuler(x,M,J,dt),[q0;w0])
