@@ -36,7 +36,7 @@ q = 1/sqrt(1 + norm(dv/2)^2) * q_mult([dv/2;1],q);
 % Other parameters
 mu = mu + K*(y-Ey);
 cov = cov - K*C*cov;
-mu(1:4) = q;
+% mu(1:4) = q;
 
 
 end
