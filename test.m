@@ -35,7 +35,7 @@ cov(:,:,1) = 1E-5*dt*eye(10);
 for i = 1:(length(x(1,:))-1)
     y(:,i) = getSensors(x(:,i),R_gyro,R_starTracker);
     if i > 1
-        [mu(:,i),cov(:,:,i)] = ukf(mu(:,i-1),cov(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
+        [mu(:,i),cov(:,:,i)] = mukf(mu(:,i-1),cov(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
     end
     x(:,i+1) = propagateState(x(:,i),tspan(i),tspan(i+1),M,J,Q_gyro);
 end
