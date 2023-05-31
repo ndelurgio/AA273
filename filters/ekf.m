@@ -17,7 +17,11 @@ Ey = getSensors(mu,zeros(3,3),zeros(4,4)); % Expected Measurement, g(x,u)
 meas_err = y - Ey; % Measurement Error
 
 mu = mu + K*meas_err; % Updating State Estimate (mean)
-mu(4,1) = sqrt(1 - mu(1,1)^2 - mu(2,1)^2 - mu(3,1)^2); % 3-parameter quaternion representation to preserve unit norm 
+mu(4,1) = sqrt(1 - mu(1,1)^2 - mu(2,1)^2 - mu(3,1)^2);% 3-parameter quaternion representation to preserve unit norm 
+% a = 0.005; 
+% if mu(4,1) - a <= 0 | mu(4,1) + a >= 1/2
+%     % do something (switch with q1, q2, or q3 to avoid chattering)
+% end
 cov = cov - K*C*cov; % Updating Confidence of State Estimate (covariance)
 
 end
