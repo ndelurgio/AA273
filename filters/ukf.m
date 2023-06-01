@@ -6,7 +6,6 @@ m = length(y);
 % Predict
 for i = 1:(2*n+1)
     x(1:7,i) = attitudeDynamicsEuler(x(1:7,i),M,J,dt);
-    x(1:4,i) = x(1:4,i)/norm(x(1:4,i));
     x(8:10,i) = gyroBiasEuler(x(8:10,i),[0;0;0],dt);
 end
 [mu,cov] = UTinv(x,w);
