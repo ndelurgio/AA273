@@ -1,7 +1,7 @@
 close all
 
 tf = 2000;
-dt = 10;
+dt = 1;
 tspan = 0:dt:tf;
 
 J = [
@@ -58,9 +58,10 @@ mu_w = mu_ukf(5:7,:);
 mu_b = mu_ukf(8:10,:);
 
 
-plotQuaternion(tspan,q,y,mu_q)
-plotAngularVelocity(tspan,w,y,mu_w)
+plotQuaternion(tspan,x,y,mu_ekf4quat,mu_ukf,mu_mukf)
+plotAngularVelocity(tspan,x,y,mu_ekf4quat,mu_ukf,mu_mukf)
 plotGyroBias(tspan,b,mu_b)
 
 plotQuaternionError(tspan,x,mu_ekf4quat,mu_ukf,mu_mukf)
 plotAngVelError(tspan,x,mu_ekf4quat,mu_ukf,mu_mukf)
+plotBiasTracking(tspan,x,mu_ekf4quat,mu_ukf,mu_mukf)
