@@ -4,7 +4,7 @@ function [mu,cov] = mekf(mu_prev, cov_prev, y, M, J, dt, Q, R)
 % Q_er = 0.001*eye(3);
 % Predict
 mu = zeros(10,1);
-mu(1:7,1) = attitudeDynamicsEuler(mu_prev(1:7,1),M,J,dt);
+mu(1:7,1) = attitudeDynamics4rk(mu_prev(1:7,1),M,J,dt);
 mu(1:4,1) = mu(1:4,1)/norm(mu(1:4,1));
 mu(8:10,1) = gyroBiasEuler(mu_prev(8:10,1),[0;0;0],dt);
 q_ref = mu(1:4);
@@ -14,7 +14,7 @@ mu_err = [0;0;0;mu(5:10)];
 % y_qvec = y(1:3);
 % y_wvec = y(5:7);
 % w_meas = y_wvec - mu(8:10);
-A = jacobianest(@(x) [attitudeDynamicsEuler(x(1:7),M,J,dt); gyroBiasEuler(x(8:10),zeros(3,1),dt)], mu_prev);
+A = jacobianest(@(x) [attitudeDynamics4rk(x(1:7),M,J,dt); gyroBiasEuler(x(8:10),zeros(3,1),dt)], mu_prev);
 cov = A*cov_prev*A' + Q;
 % Kalman Gain
 
