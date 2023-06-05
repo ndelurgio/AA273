@@ -1,4 +1,5 @@
 close all
+clc
 
 tf = 2000;
 dt = 10;
@@ -43,6 +44,10 @@ cov_ekf4quat = cov_ukf;
 mu_ekf3quat = mu_ukf;
 cov_ekf3quat = cov_ukf;
 
+mu_mekf = mu_ukf;
+cov_mekf = cov_ukf;
+
+
 for i = 1:(length(x(1,:))-1)
     t = tspan(i);
     if t < 50
@@ -58,6 +63,7 @@ for i = 1:(length(x(1,:))-1)
         [mu_mukf(:,i),cov_mukf(:,:,i)] = mukf(mu_mukf(:,i-1),cov_mukf(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
         [mu_ekf4quat(:,i),cov_ekf4quat(:,:,i)] = ekf_4quat(mu_ekf4quat(:,i-1),cov_ekf4quat(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
         [mu_ekf3quat(:,i),cov_ekf3quat(:,:,i)] = ekf(mu_ekf3quat(:,i-1),cov_ekf3quat(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
+        [mu_mekf(:,i),cov_mekf(:,:,i)] = mekf(mu_mekf(:,i-1),cov_mekf(:,:,i-1),y(:,i),M,J,dt,Q_KF,R);
     end
     x(:,i+1) = propagateState(x(:,i),tspan(i),tspan(i+1),M,J,Q_gyro);
 end
@@ -65,9 +71,9 @@ end
 q = x(1:4,:);
 w = x(5:7,:);
 b = x(8:10,:);
-mu_q = mu_ukf(1:4,:);
-mu_w = mu_ukf(5:7,:);
-mu_b = mu_ukf(8:10,:);
+mu_q = mu_mekf(1:4,:);
+mu_w = mu_mekf(5:7,:);
+mu_b = mu_mekf(8:10,:);
 
 
 plotQuaternion(tspan,x,y,mu_ekf4quat,mu_ekf3quat,mu_ukf,mu_mukf)
@@ -77,3 +83,4 @@ plotAngularVelocity(tspan,x,y,mu_ekf4quat,mu_ekf3quat,mu_ukf,mu_mukf)
 plotQuaternionError(tspan,x,mu_ekf4quat,mu_ukf,mu_mukf)
 plotAngVelError(tspan,x,mu_ekf4quat,mu_ukf,mu_mukf)
 plotBiasTracking(tspan,x,mu_ekf4quat,mu_ekf3quat,mu_ukf,mu_mukf)
+
