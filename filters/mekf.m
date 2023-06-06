@@ -33,7 +33,7 @@ y = quat_err(y,q_ref_mat);
 
 mu_err = mu_err + K_err*(y - Ey);
 % disp(norm(mu_err(1:3,1)))
-disp(norm(y(1:3)))
+% disp(norm(y(1:3)))
 
 dv = mu_err(1:3,1);
 % Reset
