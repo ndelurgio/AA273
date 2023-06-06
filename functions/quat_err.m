@@ -1,5 +1,5 @@
 function [Ey] = quat_err(Ey,q_ref_mat)
-%QUAT_ERR Summary of this function goes here
+%QUAT_ERR goes from Q_ref_mat and q to error angle
 Ey_q = Ey(1:4,1);
 
 Ey_dq = inv(q_ref_mat)*Ey_q;
