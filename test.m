@@ -2,7 +2,7 @@ close all
 clc
 
 tf = 750;
-dt = 10;
+dt = 60;
 tspan = 0:dt:tf;
 
 J = [
@@ -101,9 +101,9 @@ for i = 1:(length(x(1,:))-1)
         dq = inv(q_ref_mat)*q_curr;
         dq = dq/norm(dq);
         err = 2*dq(1:3,1);
-        x_err(:,i) = [err;x(5:end,1)];
+        x_err(:,i) = [err;x(5:end,i)];
         y_err(:,i) = getSensorsErr(x_err(:,i), R_gyro, R_starTracker(1:3,1:3));
-        mu_mekf_err(1:3,i) = [0;0;0];
+        mu_mekf_err(1:3,i-1) = [0;0;0];
 
         [mu_mekf_err(:,i),cov_mekf_err(:,:,i)] = mekf_err_ang(mu_mekf_err(:,i-1),cov_mekf_err(:,:,i-1),y_err(:,i),M,J,dt,Q_KF_MEKF_err,R_ERR);
         % disp(mu_mekf_err(1:3,i)')

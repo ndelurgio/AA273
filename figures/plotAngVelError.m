@@ -16,7 +16,7 @@ mukf_err = rad2deg(vecnorm(w_mukf-w_true,2,1));
 figure
 hold on;
 grid on;
-k = 25;
+k = 10;
 plot(t(1:end-1),movmean(ekf4quat_err,floor(length(ekf4quat_err)/k)),LineWidth=2)
 plot(t(1:end-1),movmean(ekf3quat_err,floor(length(ekf3quat_err)/k)),LineWidth=2)
 plot(t(1:end-1),movmean(mekf_err,floor(length(mekf_err)/k)),LineWidth=2)

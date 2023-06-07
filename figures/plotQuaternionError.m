@@ -43,7 +43,7 @@ ang_err_mukf = abs(2*acosd(q_err_mukf(:,4))-180);
 figure
 hold on;
 grid on;
-k = 25;
+k = 10;
 plot(t(1:end-1),movmean(ang_err_ekf,floor(length(ang_err_ekf3)/k)),LineWidth=2)
 % plot(t(1:end-1),ekf3quat_err,LineWidth=2)
 plot(t(1:end-1),movmean(ang_err_ekf3,floor(length(ang_err_ekf3)/k)),LineWidth=2)
