@@ -46,7 +46,7 @@ end
 % Measure mean computation time over some number of runs 
 runs = 10;
 t_ukf = computationTime(runs,tspan,@ukf,x0,cov0,y,J,dt,Q_KF,R)
-% t_mukf = computationTime(runs,tspan,@mukf,x0,cov0,y,J,dt,Q_KF,R)
-% t_ekf4 = computationTime(runs,tspan,@ekf_4quat,x0,cov0,y,J,dt,Q_KF,R)
-% t_ekf3 = computationTime(runs,tspan,@ekf,x0,cov0,y,J,dt,Q_KF,R)
-% t_mekf = computationTime(runs,tspan,@mekf,x0,cov0,y,J,dt,Q_KF,R)
+t_mukf = computationTime(runs,tspan,@mukf,x0,cov0,y,J,dt,Q_KF,R)
+t_ekf4 = computationTime(runs,tspan,@ekf_4quat,x0,cov0,y,J,dt,Q_KF,R)
+t_ekf3 = computationTime(runs,tspan,@ekf,x0,cov0,y,J,dt,Q_KF,R)
+t_mekf = computationTime(runs,tspan,@mekf,x0,cov0,y,J,dt,Q_KF,R)
